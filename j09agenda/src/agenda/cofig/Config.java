@@ -24,9 +24,9 @@ public class Config {
 			BasicDataSource bds = new BasicDataSource();
 			Properties prop = getProp();
 			bds.setUrl(prop.getProperty("bbdd.url"));
-			bds.setDriverClassName("bbdd.driver");
-			bds.setUsername("bbdd.user");
-			bds.setPassword("bbdd.pass");
+			bds.setDriverClassName(prop.getProperty("bbdd.driver"));
+			bds.setUsername(prop.getProperty("bbdd.user"));
+			bds.setPassword(prop.getProperty("bbdd.pass"));
 			ds = bds;
 			
 		}
@@ -39,7 +39,7 @@ public class Config {
 	//usara un mapa porque hereda de Hastable la clase properties es un mapa
 	public static Properties getProp() {
 		if(prop == null) {
-			prop = new Properties();	
+		prop = new Properties();	
 		
 		try (FileReader fr = new FileReader("app.properties")){
 			prop.load(fr);
