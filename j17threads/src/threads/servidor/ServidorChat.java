@@ -89,10 +89,28 @@ private int puerto;
 							String mensaje = linea.substring(1,linea.indexOf(" ") + 1);
 							if(sala.containsKey(usrDestino)) {
 								sala.get(usrDestino).out.println("privade de "+ user + " :" + mensaje);
+							}else {
+								out.println(usrDestino + "no esta conectado");
 							}
 								
+						}else {
+							out.println("formato incorrecto, no se ha enviado mensaje");
 						}
 						
+					}else {
+						//no es un mensaje privado
+						switch(linea.toLowerCase()) {
+						case "-w", "who":
+							for(String usr : sala.keySet()) {
+								out.println("SRV: " + usr);
+							}
+						break;
+						case "h", "help":
+							help();
+						break;
+						default:
+							difusion(user + " : " +linea);
+						}
 					}
 					
 					out.println("SRV: " + linea);
